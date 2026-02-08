@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Propose Day</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    /* General Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Great Vibes', cursive;
+    }
+
+    body {
+      background-color: #4B001F;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .box {
+      background: rgba(255,255,255,0.05);
+      padding: 40px 60px;
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(255,255,255,0.5);
+      text-align: center;
+      max-width: 700px;
+      width: 90%;
+      position: relative;
+    }
+
+    .section {
+      width: 100%;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .new-style {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  color: white;
+    }
+    .active { display: flex; }
+
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+    .fade-in.delay-1 { animation-delay: 0.5s; }
+    .fade-in.delay-2 { animation-delay: 1s; }
+    .fade-in.delay-3 { animation-delay: 1.5s; }
+    .fade-in.delay-4 { animation-delay: 2s; }
+    .fade-in.delay-5 { animation-delay: 2.5s; }
+
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    .typewriter span {
+      opacity: 0;
+      display: inline-block;
+      animation: typing 0.05s forwards;
+    }
+    @keyframes typing { to { opacity: 1; } }
+
+    /* First Page */
+    #page1 h1 { font-size: 60px; color: gold; text-shadow: 2px 2px 8px #fff; }
+    #page1 h2 { font-size: 20px; color: white; margin-top: 20px; }
+    #page1 p { color: white; margin-top: 10px; font-size: 18px; }
+    #page1 .ring { width: 120px; margin-bottom: 20px; animation: ringBounce 2s infinite; }
+
+    @keyframes ringBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Second Page */
+    #page2 h1 { font-size: 50px; color: gold; text-shadow: 2px 2px 8px #fff; margin-bottom: 20px; }
+    #page2 p { color: white; font-size: 20px; margin-bottom: 20px; }
+
+    /* Heart container */
+    .hearts-container {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .heart {
+      font-size: 50px;
+      z-index: 2;
+    }
+
+    .center-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px; /* ring size */
+      z-index: 1;
+    }
+
+    /* Buttons */
+    .btn {
+      padding: 15px 30px;
+      font-size: 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: white;
+    }
+    .btn-yes { background-color: rgb(241, 45, 94); position: relative; }
+    .btn-no { background-color: grey; position: absolute; }
+
+    /* Heart rain */
+    .heart-fall {
+      position: fixed;
+      font-size: 20px;
+      color: rgb(241, 45, 94);
+      pointer-events: none;
+      animation: fall 3s linear forwards;
+    }
+    @keyframes fall {
+      0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+        <audio id="bgMusic" loop>
+        <source src="audio.mpeg" type="audio/mpeg">
+        </audio>
+
+  <div class="box">
+
+    <!-- Page 1 -->
+    <div id="page1" class="section active">
+      <img src="image1.png" class="ring" alt="Ring">
+      <h1 class="typewriter">Happy Propose Day</h1>
+      <h2 class="new-style fade-in delay-1">For the one who owns my Heart ❤️</h2>
+      <button onclick="nextPage()" class="btn btn-yes fade-in delay-3">Top to open your heart</button>
+    </div>
+
+    <!-- Page 2 -->
+    <div id="page2" class="section">
+      <h1 class="fade-in delay-1">Will You Marry Me?</h1>
+      <p class="fade-in delay-2">My Dearest Love</p>
+
+      <!-- Heart container with centered ring -->
+      <div class="hearts-container fade-in delay-3">
+        <span class="heart">❤️</span>
+        <img src="image1.png" class="center-ring" alt="Ring">
+        <span class="heart">❤️</span>
+      </div>
+
+      <p class="new-style fade-in delay-5">“In a room full of art, you are the only masterpiece I see.
+                                    Will you be mine forever?”</p>
+      <p class="fade-in delay-5">____ 8 February ____</p>
+
+      <button class="btn btn-yes fade-in delay-3" id="yesBtn">Yes a Thousand Times... yes ❤️</button>
+      <button class="btn btn-no fade-in delay-4" id="noBtn">No..</button>
+    </div>
+
+  </div>
+
+  <script>
+    const page1 = document.getElementById('page1');
+    const page2 = document.getElementById('page2');
+    const noBtn = document.getElementById('noBtn');
+    const yesBtn = document.getElementById('yesBtn');
+    const music = document.getElementById('bgMusic');
+
+    // Typewriter effect
+    document.addEventListener("DOMContentLoaded", () => {
+      const h1 = document.querySelector("#page1 h1");
+      const text = h1.textContent;
+      h1.textContent = "";
+      text.split("").forEach((char, i) => {
+        const span = document.createElement("span");
+        span.textContent = char;
+        span.style.animationDelay = `${i * 0.1}s`;
+        h1.appendChild(span);
+      });
+    });
+
+    function nextPage() {
+      page1.classList.remove('active');
+      page2.classList.add('active');
+      music.play();
+      noBtn.style.left = yesBtn.offsetLeft + "px";
+      noBtn.style.top = (yesBtn.offsetTop + yesBtn.offsetHeight + 10) + "px";
+      noIndex = 0;
+    }
+
+    const noTexts = ["No", "Please?", "Don't Do it"];
+    let noIndex = 0;
+
+    noBtn.addEventListener('mouseenter', () => {
+      const box = document.querySelector('.box');
+      const x = Math.random() * (box.offsetWidth - noBtn.offsetWidth);
+      const y = Math.random() * (box.offsetHeight - noBtn.offsetHeight);
+      noBtn.style.left = x + 'px';
+      noBtn.style.top = y + 'px';
+      noBtn.textContent = noTexts[noIndex];
+      noIndex = (noIndex + 1) % noTexts.length;
+    });
+
+    yesBtn.addEventListener('click', () => {
+      yesBtn.innerText = "😘 Forever! 😘❤";
+      startHeartRain();
+    });
+
+    function startHeartRain() {
+      setInterval(() => {
+        const heart = document.createElement('div');
+        heart.classList.add('heart-fall');
+        heart.style.left = Math.random() * window.innerWidth + 'px';
+        heart.style.animationDuration = (2 + Math.random() * 2) + 's';
+        heart.innerText = '❤️';
+        document.body.appendChild(heart);
+        setTimeout(() => { heart.remove(); }, 4000);
+      }, 200);
+    }
+  </script>
+
+</body>
+</html>
